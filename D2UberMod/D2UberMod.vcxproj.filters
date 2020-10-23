@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="D2UberMod.cpp" />
+    <ClCompile Include="Util\DllUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Diablo\D2Api.cpp">
+      <Filter>Diablo</Filter>
+    </ClCompile>
+    <ClCompile Include="Diablo\Hooks.cpp">
+      <Filter>Diablo</Filter>
+    </ClCompile>
+    <ClCompile Include="UberTristram\UberAi.cpp">
+      <Filter>UberTristram</Filter>
+    </ClCompile>
+    <ClCompile Include="UberTristram\UberQuest.cpp">
+      <Filter>UberTristram</Filter>
+    </ClCompile>
+    <ClCompile Include="UberTristram\UberQuestState.cpp">
+      <Filter>UberTristram</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="D2UberMod.h" />
+    <ClInclude Include="Util\DllUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Func.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\FuncPtr.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Patch.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Var.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Diablo\D2Api.h">
+      <Filter>Diablo</Filter>
+    </ClInclude>
+    <ClInclude Include="Diablo\D2Structs.h">
+      <Filter>Diablo</Filter>
+    </ClInclude>
+    <ClInclude Include="Diablo\Hooks.h">
+      <Filter>Diablo</Filter>
+    </ClInclude>
+    <ClInclude Include="UberTristram\UberAi.h">
+      <Filter>UberTristram</Filter>
+    </ClInclude>
+    <ClInclude Include="UberTristram\UberQuest.h">
+      <Filter>UberTristram</Filter>
+    </ClInclude>
+    <ClInclude Include="UberTristram\UberQuestState.h">
+      <Filter>UberTristram</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Util">
+      <UniqueIdentifier>{03f5d638-6537-45b0-8e69-a1743f878921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Diablo">
+      <UniqueIdentifier>{ce62c741-0a77-4c52-a726-2cca06928731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UberTristram">
+      <UniqueIdentifier>{2556c508-e0c2-4c00-9fc1-0c45456ece25}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

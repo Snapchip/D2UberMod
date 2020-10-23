@@ -5,11 +5,11 @@ Enables Uber Tristram in singleplayer Diablo II v1.13c
 ## Install guide:
 #### With PlugY:
 - Place the dll in the PlugY install directory
-- Set DllToLoad in PlugY.ini to:
+- Set DllToLoad in `PlugY.ini` to:
 ```
     DllToLoad=D2UberMod.dll
 ```
-- Disable plugy uber quest in PlugY.ini:  
+- Disable plugy uber quest in `PlugY.ini`:  
 ```
     [UBER QUEST]
     ActiveUberQuest=0
@@ -21,7 +21,7 @@ Enables Uber Tristram in singleplayer Diablo II v1.13c
  ```
     DllToLoad=D2UberMod.dll
 ```
-- Disable plugy uber quest in PlugY.ini:  
+- Disable plugy uber quest in `PlugY.ini`:  
 ```
     [UBER QUEST]
     ActiveUberQuest=0

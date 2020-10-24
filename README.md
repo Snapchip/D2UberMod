@@ -28,7 +28,7 @@ Enables Uber Tristram in singleplayer Diablo II v1.13c
 ```
 		
 #### Without PlugY:
-- inject the dll with the injector of your choice.
+- inject `D2UberMod.dll` with the injector of your choice.
 
 <br/>
 

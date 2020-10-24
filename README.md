@@ -4,7 +4,7 @@ Enables Uber Tristram in singleplayer Diablo II v1.13c
 
 ## Install guide:
 #### With PlugY:
-- Place the dll in the PlugY install directory
+- Place `D2UberMod.dll` in the PlugY install directory
 - Set DllToLoad in `PlugY.ini` to:
 ```
     DllToLoad=D2UberMod.dll
@@ -16,7 +16,7 @@ Enables Uber Tristram in singleplayer Diablo II v1.13c
 ```
 		
 #### With PlugY and D2SE:
-- Place the dll in the `D2SE\CORES\1.13c` directory
+- Place `D2UberMod.dll` in the `D2SE\CORES\1.13c` directory
 - Set DllToLoad in `PlugY.ini` found in `D2SE\CORES\1.13c` to:
  ```
     DllToLoad=D2UberMod.dll

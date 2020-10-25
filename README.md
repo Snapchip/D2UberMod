@@ -17,18 +17,10 @@ Enables Uber Tristram in singleplayer Diablo II v1.13c
     [UBER QUEST]
     ActiveUberQuest=0
 ```
-		
-#### With PlugY and D2SE:
-- Place `D2UberMod.dll` in the `D2SE\CORES\1.13c` directory
-- Set DllToLoad in `PlugY.ini` found in `D2SE\CORES\1.13c` to:
- ```
-    DllToLoad=D2UberMod.dll
-```
-- Disable plugy uber quest in `PlugY.ini`:  
-```
-    [UBER QUEST]
-    ActiveUberQuest=0
-```
+
+Plugy can load 2 dlls, setting either `DllToLoad=D2UberMod.dll` or `DllToLoad2=D2UberMod.dll` is fine. <br/>
+If you are using D2SE place `D2UberMod.dll` in the `D2SE\CORES\1.13c` directory. `PlugY.ini` is also found in `D2SE\CORES\1.13c` and should be modified as shown above.
+
 		
 #### Without PlugY:
 - inject `D2UberMod.dll` with the injector of your choice.

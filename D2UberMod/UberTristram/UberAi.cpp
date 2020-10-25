@@ -102,14 +102,13 @@ void __fastcall UberDiabloAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 	//AI tweek
 	int chanceToRush = max(0, aiTickArgs->distanceToTarget - 10);
 	if (chanceToRush > rand() % 100) 
-	{
-		auto monstats = aiTickArgs->monStatsRec;
+	{		
 		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
 		bool rush = rand() % 3 > 0;		
 		if (rush) 
 		{
 			const int diabloRun = 4;
-			D2Api::MonsterUseSkill(unit, aiTickArgs->target, monstats, diabloRun);
+			D2Api::MonsterUseSkill(unit, aiTickArgs->target, aiTickArgs->monStatsRec, diabloRun);
 		}			
 		else 
 		{
@@ -135,17 +134,23 @@ void __fastcall UberBaalAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 	}
 
 	//AI tweek
+	static UINT32 chillTimer = 0;
+	if (chillTimer == 0 || (game->GameFrame - chillTimer > 6000)) {
+		chillTimer = game->GameFrame;
+		const int chillingArmor = 7;
+		D2Api::MonsterUseSkill(unit, {0,0}, aiTickArgs->monStatsRec, chillingArmor);
+		return;
+	}
+
 	int chanceToApproach = max(0, aiTickArgs->distanceToTarget - 10);
 	if (chanceToApproach > rand() % 100) 
-	{
-		auto monstats = aiTickArgs->monStatsRec;
+	{		
 		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
-
 		bool rush = rand() % 3 > 0;		
 		if (rush) 
 		{
 			const int baalTeleport = 4;
-			D2Api::MonsterUseSkill(unit, targetPos, monstats, baalTeleport);
+			D2Api::MonsterUseSkill(unit, targetPos, aiTickArgs->monStatsRec, baalTeleport);
 		}		
 		else 
 		{

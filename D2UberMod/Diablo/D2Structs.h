@@ -21,6 +21,8 @@ struct Game {
 	BYTE   difficultyLevel;		//	+ 0x006D - DifficultyLevel 0 = NORMAL 1 = NIGHTMARE 2 = HELL
 	BYTE   u_0x006E[0x2];		//  + 0x006E
 	BOOL   expansion;			//	+ 0x0070 - Expansion 0 = CLASSIC 1 = EXPANSION	
+	void*  u_0x0074[0xD];		//	+ 0x0074 - GameType - similar to + 06A, this seams to be more related to ladder vs. non ladder (single player is ladder)
+	UINT32 GameFrame;			//	+ 0x00A8 - GameFrame - the current frame of the game, used for timers(buff duration etc)
 };
 
 struct Point {

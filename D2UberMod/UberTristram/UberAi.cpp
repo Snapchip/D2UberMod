@@ -11,6 +11,7 @@ static constexpr int mephistoMinionSpawnChance = 80;
 static constexpr std::array<int, 2> baalMonsters{ 731, 732 };
 static constexpr int baalSpawnRadius = 18;
 static constexpr int baalMinionSpawnChance = 30;
+static UINT32 baalChillTimer = 0;
 
 static constexpr std::array<int, 1> diabloMonsters{ 711 };
 static constexpr int diabloSpawnRadius = 25;
@@ -133,10 +134,9 @@ void __fastcall UberBaalAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 		TrySpawnMonster(baalMonsters[monsterIndx], 1, pos, unit);;
 	}
 
-	//AI tweek
-	static UINT32 chillTimer = 0;
-	if (chillTimer == 0 || (game->GameFrame - chillTimer > 6000)) {
-		chillTimer = game->GameFrame;
+	//AI tweek	
+	if (baalChillTimer == 0 || (game->gameFrame - baalChillTimer > 6000)) {
+		baalChillTimer = game->gameFrame;
 		const int chillingArmor = 7;
 		D2Api::MonsterUseSkill(unit, {0,0}, aiTickArgs->monStatsRec, chillingArmor);
 		return;
@@ -161,4 +161,9 @@ void __fastcall UberBaalAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 	{
 		D2Api::BaalAI(game, unit, aiTickArgs);
 	}
+}
+
+void ResetAI()
+{
+	baalChillTimer = 0;
 }

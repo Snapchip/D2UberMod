@@ -58,6 +58,7 @@ BOOL __fastcall OpenFinalUberPortal(Game* game, Unit* unit) {
 void OnGameExit()
 {
 	questState.Reset();
+	ResetAI();
 }
 
 void OnRoomEnter(Game* game, Room* room)
@@ -78,6 +79,7 @@ void UberQuest::Install()
 {
 	srand((UINT32)time(NULL));
 	questState.Reset();	
+	ResetAI();
 	
 	D2Api::uberPortal.connect(&OpenUberPortal);
 	D2Api::finalUberPortal.connect(&OpenFinalUberPortal);
@@ -91,6 +93,7 @@ void UberQuest::Install()
 void UberQuest::Uninstall()
 {
 	questState.Reset();
+	ResetAI();
 	
 	D2Api::uberPortal.disconnect();
 	D2Api::finalUberPortal.disconnect();

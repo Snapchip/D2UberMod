@@ -33,9 +33,6 @@ Enables Uber Tristram in singleplayer Diablo II v1.13c
 <br/>
 
 ### Changelog
-v0.10a
-- Fixed an issue where Uber Mephisto would not spawn the correct monsters
-- Minor changes to Uber spawn locations
 	
 v0.02a
 - Some Uber AI fixes

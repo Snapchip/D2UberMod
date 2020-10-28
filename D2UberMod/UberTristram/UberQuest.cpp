@@ -68,16 +68,18 @@ void OnRoomEnter(Game* game, Room* room)
 		return;
 	}
 
-	for (auto mID : questState.GetNextMonsterId(lvlID)) 
+	auto mIDs = questState.GetNextMonsterId(lvlID);
+	for (auto mID : mIDs)
 	{
 		auto spawn = D2Api::SpawnSuperUnique(mID, room);
-		if (spawn) questState.SetMonsterSpawned(mID, true);
-	}
+		if (spawn) {
+			questState.SetMonsterSpawned(mID, true);
+		}			
+	}	
 }
 
 void UberQuest::Install()
-{
-	srand((UINT32)time(NULL));
+{	
 	questState.Reset();	
 	ResetAI();
 	

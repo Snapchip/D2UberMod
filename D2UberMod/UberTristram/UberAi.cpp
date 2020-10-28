@@ -1,7 +1,7 @@
-#include <math.h>
 #include <cassert>
 #include <array>
 #include "..\Diablo\D2Api.h"
+#include "..\Util\RNG.h"
 #include "UberAi.h"
 
 static constexpr std::array<int, 6> mephistoMonsters{ 725, 726, 727, 728, 729, 730 };
@@ -23,8 +23,8 @@ int Distance(Point p1, Point p2) {
 }
 
 Point RandInCircle(Point center, int radius) {
-	double rand1 = ((double)rand()) / RAND_MAX;
-	double rand2 = ((double)rand()) / RAND_MAX;
+	double rand1 = RNG::NextDouble();
+	double rand2 = RNG::NextDouble();
 
 	double a = rand1 * 6.28f;
 	double r = radius * sqrt(rand2);
@@ -80,10 +80,10 @@ void __fastcall UberMephistoAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 {
 	assert(aiTickArgs->target);	
 	//Spawn minions
-	if (rand() % 100 < mephistoMinionSpawnChance && aiTickArgs->distanceToTarget <= mephistoSpawnRadius) 
+	if (RNG::NextInt(100) < mephistoMinionSpawnChance && aiTickArgs->distanceToTarget <= mephistoSpawnRadius) 
 	{
 		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
-		int monsterIndx = rand() % mephistoMonsters.size();
+		int monsterIndx = RNG::NextInt(mephistoMonsters.size());
 		TrySpawnMonster(mephistoMonsters[monsterIndx], 8, targetPos, unit);
 	}
 	D2Api::MephistoAI(game, unit, aiTickArgs);
@@ -93,7 +93,7 @@ void __fastcall UberDiabloAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 {
 	assert(aiTickArgs->target);		
 	//Spawn minions
-	if (rand() % 100 < diabloMinionSpawnChance && aiTickArgs->distanceToTarget <= diabloSpawnRadius) 
+	if (RNG::NextInt(100) < diabloMinionSpawnChance && aiTickArgs->distanceToTarget <= diabloSpawnRadius)
 	{
 		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
 		auto pos = RandInCircle(targetPos, 3);		
@@ -102,10 +102,10 @@ void __fastcall UberDiabloAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 
 	//AI tweek
 	int chanceToRush = max(0, aiTickArgs->distanceToTarget - 10);
-	if (chanceToRush > rand() % 100) 
+	if (chanceToRush > RNG::NextInt(100))
 	{		
 		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
-		bool rush = rand() % 3 > 0;		
+		bool rush = RNG::NextInt(3) > 0;
 		if (rush) 
 		{
 			const int diabloRun = 4;
@@ -126,11 +126,11 @@ void __fastcall UberBaalAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 {
 	assert(aiTickArgs->target);	
 	//Spawn minions
-	if (rand() % 100 < baalMinionSpawnChance && aiTickArgs->distanceToTarget <= baalSpawnRadius) 
+	if (RNG::NextInt(100) < baalMinionSpawnChance && aiTickArgs->distanceToTarget <= baalSpawnRadius)
 	{
 		auto unitPos = D2Api::GetUnitPosition(unit);
 		auto pos = RandInCircle(unitPos, 3);
-		int monsterIndx = rand() % baalMonsters.size();
+		int monsterIndx = RNG::NextInt(baalMonsters.size());
 		TrySpawnMonster(baalMonsters[monsterIndx], 1, pos, unit);;
 	}
 
@@ -143,10 +143,10 @@ void __fastcall UberBaalAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 	}
 
 	int chanceToApproach = max(0, aiTickArgs->distanceToTarget - 10);
-	if (chanceToApproach > rand() % 100) 
+	if (chanceToApproach > RNG::NextInt(100))
 	{		
 		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
-		bool rush = rand() % 3 > 0;		
+		bool rush = RNG::NextInt(3) > 0;
 		if (rush) 
 		{
 			const int baalTeleport = 4;

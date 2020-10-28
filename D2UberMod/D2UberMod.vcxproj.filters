@@ -21,6 +21,9 @@
     <ClCompile Include="UberTristram\UberQuestState.cpp">
       <Filter>UberTristram</Filter>
     </ClCompile>
+    <ClCompile Include="Util\RNG.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -57,6 +60,9 @@
     </ClInclude>
     <ClInclude Include="UberTristram\UberQuestState.h">
       <Filter>UberTristram</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\RNG.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

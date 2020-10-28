@@ -195,6 +195,7 @@
     <ClInclude Include="D2UberMod.h" />
     <ClInclude Include="Util\FuncPtr.h" />
     <ClInclude Include="Util\Patch.h" />
+    <ClInclude Include="Util\RNG.h" />
     <ClInclude Include="Util\Var.h" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +207,7 @@
     <ClCompile Include="UberTristram\UberQuest.cpp" />
     <ClCompile Include="Util\DllUtil.cpp" />
     <ClCompile Include="D2UberMod.cpp" />
+    <ClCompile Include="Util\RNG.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

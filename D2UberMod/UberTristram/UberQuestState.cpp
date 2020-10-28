@@ -1,7 +1,6 @@
 #include <algorithm>
-#include <random>
-#include <chrono>
 #include "UberQuestState.h"
+#include "../Util/RNG.h"
 
 BYTE UberQuestState::GetNextPortalId()
 {
@@ -46,9 +45,8 @@ std::vector<UINT32> UberQuestState::GetNextMonsterId(BYTE lvlID)
 		else UberMephistoPriority--;
 		if (!UberDiabloSpawned && !UberDiabloPriority) result.push_back(UBER_DIABLO_ID);
 		else UberDiabloPriority--;
-
-		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();		
-		std::shuffle(result.begin(), result.end(), std::default_random_engine(seed));
+			
+		std::shuffle(result.begin(), result.end(), RNG::engine);
 	}
 	
 	return result;
@@ -79,17 +77,17 @@ bool UberQuestState::IsUberQuestLevel(BYTE lvlID)
 
 void UberQuestState::Reset()
 {
-	LilithPriority = 5 + rand() % 20;
-	DurielPriority = 10 + rand() % 30;;
-	IzualPriority = 10 + rand() % 20;;
+	LilithPriority = 5 + RNG::NextInt(20);
+	DurielPriority = 10 + RNG::NextInt(30);
+	IzualPriority = 10 + RNG::NextInt(20);
 	
 	UberMephistoPriority = 1;
 	UberDiabloPriority = 1;
 	UberBaalPriority = 1;
 
-	LilithPortalPriority = 1 + rand() % 10;
-	DurielPortalPriority = 1 + rand() % 10;
-	IzualPortalPriority = 1 + rand() % 10;
+	LilithPortalPriority = 1 + RNG::NextInt(10);
+	DurielPortalPriority = 1 + RNG::NextInt(10);
+	IzualPortalPriority = 1 + RNG::NextInt(10);
 
 	Active = false;
 	LilithPortalOpen = false;

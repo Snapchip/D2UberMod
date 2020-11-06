@@ -1,5 +1,5 @@
 # D2UberMod
-Enables Uber Tristram in singleplayer Diablo II v1.13c
+Enables Uber Tristram in singleplayer Diablo II v1.13c and v1.14d
 
 ![Mephisto](https://user-images.githubusercontent.com/71973715/97115205-26007300-16fe-11eb-9755-0f8fa927b03b.jpg)
 ![Diablo](https://user-images.githubusercontent.com/71973715/97115204-200a9200-16fe-11eb-9b5e-21cc0c1ab250.png)
@@ -28,12 +28,16 @@ If you are using D2SE place `D2UberMod.dll` in the `D2SE\CORES\1.13c` directory.
 <br/>
 
 ### Changelog
-v0.10a
+[v0.20a](https://github.com/Snapchip/D2UberMod/releases/tag/v0.20a)
+- Added support for Diablo II version 1.14d
+- Fixed possible crash if the dll was unloaded while the game is running.
+
+[v0.10a](https://github.com/Snapchip/D2UberMod/releases/tag/v0.10a)
 - Uber Baal now casts [Chilling Armor](http://classic.battle.net/diablo2exp/monsters/act5-uberbaal.shtml)
 - Fixed a bug where Uber Mephisto would not spawn the correct monsters
 - Minor changes to Uber spawn locations
 
-v0.02a
+[v0.02a](https://github.com/Snapchip/D2UberMod/releases/tag/v0.02a)
 - Some Uber AI fixes
 - Ubers spawn minions!
 - Uber Baal and Uber Diablo approach more often when they are far away from the player

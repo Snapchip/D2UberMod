@@ -52,6 +52,6 @@ void Patch<Size>::Uninstall()
 {
 	DWORD protect;
 	VirtualProtect(address, Size, PAGE_EXECUTE_READWRITE, &protect);
-	memcpy_s(address, Size, newCode.data(), Size);
+	memcpy_s(address, Size, oldCode.data(), Size);
 	VirtualProtect(address, Size, protect, &protect);
 }

@@ -8,15 +8,13 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        D2UberMod::OnAttach(hModule, lpReserved);
-        break;
+        return D2UberMod::OnAttach(hModule, lpReserved);       
     case DLL_THREAD_ATTACH:
         break;
     case DLL_THREAD_DETACH:
         break;
     case DLL_PROCESS_DETACH:
-        D2UberMod::OnDetach();
-        break;
+        return D2UberMod::OnDetach();       
     }
     return TRUE;
 }

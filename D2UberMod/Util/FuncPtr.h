@@ -5,15 +5,15 @@ template<class R, class ... Args> class FuncPtr;
 template<class R, class ... Args>
 class FuncPtr<R __fastcall (Args... args)> {
 	using func_ptr_t = R(__fastcall*)(Args...);
-	void* value = 0;
+	void* value = nullptr;
 	void* address = nullptr;
 
-public:
+public:	
 	FuncPtr(const char* dllName, int offset) {
 		address = DllUtil::GetAddress(dllName, offset);
 		value = *reinterpret_cast<void**>(address);
 	}
-
+	FuncPtr() {};
 	void connect(func_ptr_t func) {
 		DllUtil::WriteToReadonlyMemory((PUINT32)address, (UINT32)func);
 	}
@@ -25,15 +25,15 @@ public:
 template<class R, class ... Args>
 class FuncPtr<R __stdcall (Args... args)> {
 	using func_ptr_t = R(__stdcall*)(Args...);
-	void* value = 0;
+	void* value = nullptr;
 	void* address = nullptr;	
 
-public:
+public:	
 	FuncPtr(const char* dllName, int offset) {
 		address = DllUtil::GetAddress(dllName, offset);
 		value = *reinterpret_cast<void**>(address);	
 	}
-
+	FuncPtr() {};
 	void connect(func_ptr_t func) {
 		DllUtil::WriteToReadonlyMemory((PUINT32)address, (UINT32)func);
 	}

@@ -38,7 +38,7 @@ void NumberOfMonstersInArea(int& monstersInLevel, int& monstersNearby, Level* le
 		for (Unit* unit = room->room->unitFirst; unit; unit = unit->roomNext) 
 		{
 			if (unit->type != 1 || unit->mode == 12 || unit->txtFileNo == 711) continue;
-			auto unitPos = D2Api::GetUnitPosition(unit);
+			auto unitPos = D2Api->GetUnitPosition(unit);
 			monstersInLevel++;
 			if (Distance(unitPos, position) <= radius) monstersNearby++;
 		}
@@ -47,7 +47,7 @@ void NumberOfMonstersInArea(int& monstersInLevel, int& monstersNearby, Level* le
 
 bool SpawnMonster(UINT32 id, UINT32 mode, Point pos, Room* room) 
 {
-	Unit* spawn = D2Api::SpawnMonster(id, mode, room, pos.x, pos.y);
+	Unit* spawn = D2Api->SpawnMonster(id, mode, room, pos.x, pos.y);
 	if (spawn) return spawn;
 
 	//if spawn fails try to spawn in nearby rooms 
@@ -56,7 +56,7 @@ bool SpawnMonster(UINT32 id, UINT32 mode, Point pos, Room* room)
 		auto troom = room->roomsNear[j];
 		if (pos.x >= troom->xStart && pos.x <= troom->xStart + troom->xSize &&
 			pos.y >= troom->yStart && pos.y <= troom->yStart + troom->ySize) {
-			spawn = D2Api::SpawnMonster(id, mode, troom, pos.x, pos.y);
+			spawn = D2Api->SpawnMonster(id, mode, troom, pos.x, pos.y);
 			break;
 		}
 	}
@@ -65,7 +65,7 @@ bool SpawnMonster(UINT32 id, UINT32 mode, Point pos, Room* room)
 
 bool TrySpawnMonster(UINT32 id, UINT32 mode, Point position, Unit* unit) 
 {
-	auto room = D2Api::GetRoomFromUnit(unit);
+	auto room = D2Api->GetRoomFromUnit(unit);
 	auto level = room->roomEx->level;
 	int monstersInLevel = 0;
 	int monstersNearby = 0;
@@ -82,11 +82,11 @@ void __fastcall UberMephistoAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 	//Spawn minions
 	if (RNG::NextInt(100) < mephistoMinionSpawnChance && aiTickArgs->distanceToTarget <= mephistoSpawnRadius) 
 	{
-		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
+		auto targetPos = D2Api->GetUnitPosition(aiTickArgs->target);
 		int monsterIndx = RNG::NextInt(mephistoMonsters.size());
 		TrySpawnMonster(mephistoMonsters[monsterIndx], 8, targetPos, unit);
 	}
-	D2Api::MephistoAI(game, unit, aiTickArgs);
+	D2Api->MephistoAI(game, unit, aiTickArgs);
 }
 
 void __fastcall UberDiabloAI(Game* game, Unit* unit, AIParam* aiTickArgs) 
@@ -95,7 +95,7 @@ void __fastcall UberDiabloAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 	//Spawn minions
 	if (RNG::NextInt(100) < diabloMinionSpawnChance && aiTickArgs->distanceToTarget <= diabloSpawnRadius)
 	{
-		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
+		auto targetPos = D2Api->GetUnitPosition(aiTickArgs->target);
 		auto pos = RandInCircle(targetPos, 3);		
 		TrySpawnMonster(diabloMonsters[0], 1, pos, unit);
 	}
@@ -104,21 +104,21 @@ void __fastcall UberDiabloAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 	int chanceToRush = max(0, aiTickArgs->distanceToTarget - 10);
 	if (chanceToRush > RNG::NextInt(100))
 	{		
-		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
+		auto targetPos = D2Api->GetUnitPosition(aiTickArgs->target);
 		bool rush = RNG::NextInt(3) > 0;
 		if (rush) 
 		{
 			const int diabloRun = 4;
-			D2Api::MonsterUseSkill(unit, aiTickArgs->target, aiTickArgs->monStatsRec, diabloRun);
+			D2Api->MonsterUseSkill(unit, aiTickArgs->target, aiTickArgs->monStatsRec, diabloRun);
 		}			
 		else 
 		{
-			D2Api::MonsterMove(unit, targetPos);
+			D2Api->MonsterMove(unit, targetPos);
 		}			
 	}
 	else 
 	{
-		D2Api::DiabloAI(game, unit, aiTickArgs);
+		D2Api->DiabloAI(game, unit, aiTickArgs);
 	}
 }
 
@@ -128,7 +128,7 @@ void __fastcall UberBaalAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 	//Spawn minions
 	if (RNG::NextInt(100) < baalMinionSpawnChance && aiTickArgs->distanceToTarget <= baalSpawnRadius)
 	{
-		auto unitPos = D2Api::GetUnitPosition(unit);
+		auto unitPos = D2Api->GetUnitPosition(unit);
 		auto pos = RandInCircle(unitPos, 3);
 		int monsterIndx = RNG::NextInt(baalMonsters.size());
 		TrySpawnMonster(baalMonsters[monsterIndx], 1, pos, unit);;
@@ -138,28 +138,28 @@ void __fastcall UberBaalAI(Game* game, Unit* unit, AIParam* aiTickArgs)
 	if (baalChillTimer == 0 || (game->gameFrame - baalChillTimer > 6000)) {
 		baalChillTimer = game->gameFrame;
 		const int chillingArmor = 7;
-		D2Api::MonsterUseSkill(unit, {0,0}, aiTickArgs->monStatsRec, chillingArmor);
+		D2Api->MonsterUseSkill(unit, {0,0}, aiTickArgs->monStatsRec, chillingArmor);
 		return;
 	}
 
 	int chanceToApproach = max(0, aiTickArgs->distanceToTarget - 10);
 	if (chanceToApproach > RNG::NextInt(100))
 	{		
-		auto targetPos = D2Api::GetUnitPosition(aiTickArgs->target);
+		auto targetPos = D2Api->GetUnitPosition(aiTickArgs->target);
 		bool rush = RNG::NextInt(3) > 0;
 		if (rush) 
 		{
 			const int baalTeleport = 4;
-			D2Api::MonsterUseSkill(unit, targetPos, aiTickArgs->monStatsRec, baalTeleport);
+			D2Api->MonsterUseSkill(unit, targetPos, aiTickArgs->monStatsRec, baalTeleport);
 		}		
 		else 
 		{
-			D2Api::MonsterMove(unit, targetPos);
+			D2Api->MonsterMove(unit, targetPos);
 		}			
 	}
 	else 
 	{
-		D2Api::BaalAI(game, unit, aiTickArgs);
+		D2Api->BaalAI(game, unit, aiTickArgs);
 	}
 }
 

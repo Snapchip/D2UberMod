@@ -1,6 +1,7 @@
 #include "D2UberMod.h"
 #include "Diablo\D2Api.h"
 #include "Diablo\D2Api113c.h"
+#include "Diablo\D2Api113d.h"
 #include "Diablo\D2Api114d.h"
 #include "UberTristram\UberQuest.h"
 #include "Util\Version.h"
@@ -13,6 +14,10 @@ namespace D2UberMod
 		std::string version = Version::GetVersionString();
 		if (version == "1.13c") {
 			D2Api = std::make_unique<D2Api113c>();
+			return true;
+		}
+		else if (version == "1.13d") {
+			D2Api = std::make_unique<D2Api113d>();
 			return true;
 		}
 		else if (version == "1.14d") {

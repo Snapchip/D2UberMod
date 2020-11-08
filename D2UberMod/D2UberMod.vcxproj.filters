@@ -30,6 +30,9 @@
     <ClCompile Include="Util\Version.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="Diablo\D2Api113d.cpp">
+      <Filter>Diablo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -75,6 +78,9 @@
     </ClInclude>
     <ClInclude Include="Util\Version.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Diablo\D2Api113d.h">
+      <Filter>Diablo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

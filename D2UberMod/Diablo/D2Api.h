@@ -28,8 +28,8 @@ struct D2ApiBase {
 	virtual Unit* SpawnSuperUnique(UINT32 id, Room* room);
 	virtual Unit* SpawnMonster(UINT32 id, UINT32 mode, Room* room, INT32 x, INT32 y);
 	virtual void MonsterMove(Unit* monster, Point position);
-	virtual void MonsterUseSkill(Unit* monster, Unit* target, MonStatsTxt*, UINT32 skillId);
-	virtual void MonsterUseSkill(Unit* monster, Point position, MonStatsTxt*, UINT32 skillId);
+	virtual void MonsterUseSkill(Unit* monster, Unit* target, MonStatsTxt* monstats, UINT32 skillId);
+	virtual void MonsterUseSkill(Unit* monster, Point position, MonStatsTxt* monstats, UINT32 skillId);
 
 	std::function<void(Game* game, Room* room)> roomEnter;
 	std::function<void()> gameExit;

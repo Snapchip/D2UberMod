@@ -108,6 +108,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Diablo\D2Api113d.h" />
     <ClInclude Include="Diablo\D2Api114d.h" />
     <ClInclude Include="Diablo\D2Api113c.h" />
     <ClInclude Include="Diablo\D2Api.h" />
@@ -126,6 +127,7 @@
     <ClInclude Include="Util\Version.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Diablo\D2Api113d.cpp" />
     <ClCompile Include="Diablo\D2Api.cpp" />
     <ClCompile Include="Diablo\D2Api114d.cpp" />
     <ClCompile Include="Diablo\D2Api113c.cpp" />
